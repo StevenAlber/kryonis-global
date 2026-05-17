@@ -1045,6 +1045,128 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
   .corr-form { padding: 32px 24px; }
 }
 
+/* ========== ENGAGEMENT FORM ========== */
+.corr-form-section {
+  padding: clamp(80px, 12vw, 140px) 0;
+  border-top: 1px solid var(--line);
+}
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 400;
+  margin: 16px 0 24px;
+  letter-spacing: -0.01em;
+}
+.section-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--ivory-soft);
+  max-width: 60ch;
+  margin-bottom: 48px;
+  line-height: 1.65;
+}
+.corr-form {
+  background: rgba(20, 23, 26, 0.4);
+  border: 1px solid var(--line);
+  padding: 48px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 28px;
+  margin-bottom: 32px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+.form-field-full {
+  grid-column: 1 / -1;
+}
+.form-field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  background: rgba(11, 13, 12, 0.7);
+  border: 1px solid var(--line);
+  color: var(--ivory);
+  padding: 12px 16px;
+  font-family: var(--serif);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.form-field select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23B8935E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px 8px;
+  padding-right: 40px;
+}
+.form-field select option {
+  background: var(--carbon);
+  color: var(--ivory);
+}
+.form-field textarea {
+  resize: vertical;
+  min-height: 160px;
+  font-family: var(--serif);
+}
+.form-note {
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: var(--ivory-dim);
+  font-style: italic;
+}
+
+/* ========== ENGAGEMENT TRACK CTAs ========== */
+.hyp-cta {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+/* ========== INSTITUTIONAL META GRID ========== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px, 4vw, 56px);
+}
+.info-grid p {
+  color: var(--ivory);
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .corr-form { padding: 24px 20px; }
+}
+
 /* ========== CTA STRIP ========== */
 .cta-strip {
   background: var(--abyss-green);

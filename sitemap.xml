@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kryonis.global/engagement.html</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://kryonis.global/correspondence.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>yearly</changefreq>
