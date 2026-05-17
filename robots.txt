@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kryonis.global/sitemap.xml
