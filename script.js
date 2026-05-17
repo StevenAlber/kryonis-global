@@ -36,9 +36,26 @@
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    const setExpanded = (open) => {
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      setExpanded(isOpen);
+    });
     navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        setExpanded(false);
+      });
+    });
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        setExpanded(false);
+        navToggle.focus();
+      }
     });
   }
 
@@ -76,7 +93,7 @@
       const body = encodeURIComponent(
         `Name: ${name}\nOrganisation: ${org}\nReply-to: ${email}\n\n${message}`
       );
-      window.location.href = `mailto:office@kryonis.global?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:hq@kryonis.global?subject=${subject}&body=${body}`;
     });
   }
 })();
