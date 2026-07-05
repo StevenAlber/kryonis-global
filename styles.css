@@ -1462,3 +1462,71 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
   border-left: 2px solid var(--gold-bright);
 }
 .sample-callout h2 { color: var(--ivory); }
+
+/* ========== OPERATING STATUS & PROOF (status.html) ========== */
+.status-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: rgba(20, 23, 26, 0.5);
+  margin-top: 40px;
+}
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.status-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: left;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line-gold);
+  background: rgba(11, 13, 12, 0.6);
+  white-space: nowrap;
+}
+.status-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ivory-soft);
+  vertical-align: top;
+}
+.status-table tr:last-child td { border-bottom: 0; }
+.status-table td:first-child {
+  color: var(--ivory);
+  font-weight: 500;
+}
+.status-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  color: var(--ivory-soft);
+  white-space: nowrap;
+}
+.status-tag.live { border-color: var(--gold); color: var(--gold-bright); }
+.status-tag.documented { border-color: var(--line-gold); color: var(--gold); }
+.status-tag.pending { border-color: var(--line-strong); color: var(--ivory-dim); }
+.status-tag.not-active { border-color: rgba(232, 227, 214, 0.18); color: var(--grey); }
+.status-list { list-style: none; padding: 0; margin: 40px 0 0; max-width: var(--reading); }
+.status-list li {
+  padding: 14px 0 14px 28px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  color: var(--ivory-soft);
+}
+.status-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.status-list li:last-child { border-bottom: 0; }
+.status-list li strong { color: var(--ivory); font-weight: 500; }
