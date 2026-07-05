@@ -1407,3 +1407,20 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
 .form-status.is-ok { color: var(--gold-bright); font-style: italic; }
 .form-status.is-error { color: #C97B6B; }
 .form-field-full { grid-column: 1 / -1; }
+
+/* ========== SAMPLE BRIEF CALLOUT ========== */
+.sample-callout {
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg, rgba(184, 147, 94, 0.08), rgba(16, 42, 34, 0.35));
+  padding: clamp(28px, 4vw, 48px);
+  position: relative;
+}
+.sample-callout::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 34px; height: 34px;
+  border-top: 2px solid var(--gold-bright);
+  border-left: 2px solid var(--gold-bright);
+}
+.sample-callout h2 { color: var(--ivory); }
