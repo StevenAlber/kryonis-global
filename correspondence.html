@@ -83,7 +83,7 @@
     <div class="wrap">
       <div class="corr-grid">
         <div class="reveal">
-          <form id="corr-form" class="corr-form">
+          <form id="corr-form" class="corr-form" data-kryonis-form="correspondence" novalidate>
             <h3>Write to the Studio</h3>
             <p>Tell us about your institution and the question you would like to bring into correspondence. If the alignment is right, we respond personally within seven days.</p>
 
@@ -99,7 +99,9 @@
             <label for="corr-message">Your message</label>
             <textarea id="corr-message" name="message" required></textarea>
 
-            <button type="submit" class="btn btn-primary btn-arrow">Open Email Draft</button>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
+            <button type="submit" class="btn btn-primary btn-arrow">Send Message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
 

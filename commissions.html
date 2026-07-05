@@ -109,8 +109,7 @@
           </div>
         </div>
         <div class="hyp-cta commission-cta">
-          <!-- To take payment directly, replace the mailto below with your Stripe Payment Link -->
-          <a href="mailto:hq@kryonis.global?subject=Commission%20C-00%20%E2%80%94%20Diagnostic%20Memo&body=Name%3A%0AInstitution%3A%0AThe%20question%20I%20want%20answered%3A%0A%0APreferred%20start%20date%3A" class="btn btn-primary btn-arrow">Commission this memo</a>
+          <a href="#commission-form" class="btn btn-primary btn-arrow commission-open" data-instrument="C-00 · Diagnostic Memo">Commission this memo</a>
           <span class="commission-note">Scope confirmed within 48 hours · Invoiced via Stripe</span>
         </div>
       </article>
@@ -139,8 +138,7 @@
           </div>
         </div>
         <div class="hyp-cta commission-cta">
-          <!-- To take payment directly, replace the mailto below with your Stripe Payment Link -->
-          <a href="mailto:hq@kryonis.global?subject=Commission%20C-01%20%E2%80%94%20KRYONIS%20Brief&body=Name%3A%0AInstitution%3A%0ATerrain%20of%20the%20brief%3A%0A%0ADecision%20this%20brief%20should%20inform%3A%0APreferred%20start%20date%3A" class="btn btn-primary btn-arrow">Commission this brief</a>
+          <a href="#commission-form" class="btn btn-primary btn-arrow commission-open" data-instrument="C-01 · The KRYONIS Brief">Commission this brief</a>
           <span class="commission-note">Scope confirmed within 48 hours · 50% on confirmation, 50% on delivery</span>
         </div>
       </article>
@@ -169,8 +167,7 @@
           </div>
         </div>
         <div class="hyp-cta commission-cta">
-          <!-- To take payment directly, replace the mailto below with your Stripe Payment Link -->
-          <a href="mailto:hq@kryonis.global?subject=Commission%20C-02%20%E2%80%94%20Whitepaper%20Suite&body=Name%3A%0AProject%3A%0AWhat%20the%20protocol%20does%3A%0A%0AExisting%20materials%20(links)%3A%0APreferred%20start%20date%3A" class="btn btn-primary btn-arrow">Commission this suite</a>
+          <a href="#commission-form" class="btn btn-primary btn-arrow commission-open" data-instrument="C-02 · Whitepaper & Protocol Documentation Suite">Commission this suite</a>
           <span class="commission-note">Scope confirmed within 48 hours · 50% on confirmation, 50% on delivery</span>
         </div>
       </article>
@@ -199,12 +196,66 @@
           </div>
         </div>
         <div class="hyp-cta commission-cta">
-          <!-- To take payment directly, replace the mailto below with your Stripe Payment Link -->
-          <a href="mailto:hq@kryonis.global?subject=Commission%20C-03%20%E2%80%94%20Verification%20Readiness%20Audit&body=Name%3A%0AProject%3A%0AAsset%20class%20and%20jurisdiction%3A%0A%0AClaims%20currently%20made%20to%20buyers%20or%20investors%3A%0APreferred%20start%20date%3A" class="btn btn-primary btn-arrow">Commission this audit</a>
+          <a href="#commission-form" class="btn btn-primary btn-arrow commission-open" data-instrument="C-03 · Verification Readiness Audit">Commission this audit</a>
           <span class="commission-note">Scope confirmed within 48 hours · 50% on confirmation, 50% on delivery</span>
         </div>
       </article>
 
+    </div>
+  </section>
+
+
+  <!-- COMMISSION FORM -->
+  <section id="commission-form" class="corr-form-section">
+    <div class="wrap">
+      <form class="corr-form" data-kryonis-form="commission" novalidate>
+        <h3>Commission an instrument.</h3>
+        <p>State the question or terrain in a few sentences. Within 48 hours you receive a one-page written scope; work begins on confirmation. Nothing here is stored on the site — the message goes directly to the Studio.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required autocomplete="name" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-institution">Institution or project</label>
+            <input type="text" id="cf-institution" name="institution" autocomplete="organization" />
+          </div>
+
+          <div class="form-field">
+            <label for="cf-instrument">Instrument</label>
+            <select id="cf-instrument" name="instrument">
+              <option value="C-00 · Diagnostic Memo">C-00 · Diagnostic Memo — USD 850</option>
+              <option value="C-01 · The KRYONIS Brief" selected>C-01 · The KRYONIS Brief — USD 3,500</option>
+              <option value="C-02 · Whitepaper & Protocol Documentation Suite">C-02 · Whitepaper &amp; Documentation Suite — USD 7,500</option>
+              <option value="C-03 · Verification Readiness Audit">C-03 · Verification Readiness Audit — USD 9,500</option>
+              <option value="Undecided">Undecided — advise me</option>
+            </select>
+          </div>
+
+          <div class="form-field form-field-full">
+            <label for="cf-message">The question or terrain</label>
+            <textarea id="cf-message" name="message" rows="6" required placeholder="A few sentences are enough. What should the work answer, and what decision does it inform?"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="cf-start">Preferred start</label>
+            <input type="text" id="cf-start" name="start" placeholder="e.g. immediately, or a date" />
+          </div>
+
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-arrow">Send commission inquiry</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="commission-note" style="margin-top: 16px;">Scope confirmed within 48 hours · Invoiced via Stripe · Confidential by default</p>
+      </form>
     </div>
   </section>
 

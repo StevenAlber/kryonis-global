@@ -1,4 +1,10 @@
 /* KRYONIS — Civilization Discovery Engine */
+
+/* Form endpoint — set this ONCE after deploying the Cloudflare Worker.
+   Example: 'https://kryonis-forms.yourname.workers.dev'
+   While empty, forms fall back to opening an email draft. */
+const KRYONIS_FORM_ENDPOINT = '';
+
 (() => {
   'use strict';
 
@@ -81,19 +87,88 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* Correspondence form — open mailto with composed message */
-  const corrForm = document.querySelector('#corr-form');
-  if (corrForm) {
-    corrForm.addEventListener('submit', (e) => {
+
+  /* ===== Universal form handler: on-page forms -> Cloudflare Worker -> Studio ===== */
+  const forms = document.querySelectorAll('form[data-kryonis-form]');
+  forms.forEach((form) => {
+    const statusEl = form.querySelector('.form-status');
+    const btn = form.querySelector('button[type="submit"]');
+    const setStatus = (msg, ok) => {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.classList.toggle('is-ok', !!ok);
+      statusEl.classList.toggle('is-error', ok === false);
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = corrForm.querySelector('[name=name]').value.trim();
-      const org = corrForm.querySelector('[name=org]').value.trim();
-      const email = corrForm.querySelector('[name=email]').value.trim();
-      const message = corrForm.querySelector('[name=message]').value.trim();
-      const subject = encodeURIComponent('KRYONIS — Correspondence Inquiry');
-      const body = encodeURIComponent(
-        `Name: ${name}\nOrganisation: ${org}\nReply-to: ${email}\n\n${message}`
-      );
-      window.location.href = `mailto:hq@kryonis.global?subject=${subject}&body=${body}`;
+      const payload = { form: form.dataset.kryonisForm, page: location.pathname };
+      let valid = true;
+      form.querySelectorAll('input[name], select[name], textarea[name]').forEach((el) => {
+        payload[el.name] = el.value.trim();
+        if (el.required && !el.value.trim()) valid = false;
+      });
+      const sel = form.querySelector('select[name]');
+      if (sel) payload[sel.name + '_label'] = sel.options[sel.selectedIndex]?.text || '';
+      if (!valid || !payload.email || !payload.email.includes('@')) {
+        setStatus('Please complete the required fields.', false);
+        return;
+      }
+
+      /* Fallback: no endpoint configured -> email draft */
+      if (!KRYONIS_FORM_ENDPOINT) {
+        const subject = encodeURIComponent(`KRYONIS — ${payload.instrument || payload.track || 'Inquiry'} — ${payload.name}`);
+        const body = encodeURIComponent(Object.entries(payload)
+          .filter(([k]) => !['website', 'page', 'form'].includes(k))
+          .map(([k, v]) => `${k}: ${v}`).join('\n'));
+        window.location.href = `mailto:hq@kryonis.global?subject=${subject}&body=${body}`;
+        return;
+      }
+
+      try {
+        if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
+        setStatus('', true);
+        const res = await fetch(KRYONIS_FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const out = await res.json().catch(() => ({}));
+        if (res.ok && out.ok) {
+          form.reset();
+          setStatus('Received. A written reply follows within seven days — for commissions, a scope within 48 hours.', true);
+        } else {
+          setStatus('The message could not be sent. Please write directly to hq@kryonis.global.', false);
+        }
+      } catch (err) {
+        setStatus('The message could not be sent. Please write directly to hq@kryonis.global.', false);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || btn.textContent; }
+      }
     });
-  }
+  });
+
+  /* Commission card buttons -> preselect instrument, scroll to form */
+  document.querySelectorAll('.commission-open').forEach((a) => {
+    a.addEventListener('click', () => {
+      const sel = document.getElementById('cf-instrument');
+      if (sel && a.dataset.instrument) {
+        for (const opt of sel.options) {
+          if (opt.value === a.dataset.instrument) { sel.value = opt.value; break; }
+        }
+      }
+    });
+  });
+
+  /* Prefill instrument from URL ?instrument=C-01 */
+  (() => {
+    const p = new URLSearchParams(location.search).get('instrument');
+    const sel = document.getElementById('cf-instrument');
+    if (p && sel) {
+      for (const opt of sel.options) {
+        if (opt.value.startsWith(p)) { sel.value = opt.value; break; }
+      }
+    }
+  })();
+
 })();

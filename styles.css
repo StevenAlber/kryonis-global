@@ -1395,3 +1395,15 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
   text-transform: uppercase;
   color: var(--ivory-dim);
 }
+
+
+/* ========== FORM STATUS ========== */
+.form-status {
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  min-height: 1.4em;
+}
+.form-status.is-ok { color: var(--gold-bright); font-style: italic; }
+.form-status.is-error { color: #C97B6B; }
+.form-field-full { grid-column: 1 / -1; }

@@ -263,7 +263,7 @@
         Where alignment is clear, a personal reply follows within seven days.
       </p>
 
-      <form class="corr-form" id="engagementForm">
+      <form class="corr-form" id="engagementForm" data-kryonis-form="engagement" novalidate>
         <div class="form-grid">
           <div class="form-field">
             <label for="ef-name">Name</label>
@@ -306,7 +306,9 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-arrow">Open Email Draft</button>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;" />
+        <button type="submit" class="btn btn-primary btn-arrow">Send Inquiry</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
 
         <p class="form-note">
           This form prepares an email to <a href="mailto:hq@kryonis.global" class="link-inline">hq@kryonis.global</a>
@@ -402,31 +404,6 @@
 
   <script src="/script.js"></script>
   <script>
-    // Engagement form -> mailto with structured body
-    document.getElementById('engagementForm')?.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const f = e.target;
-      const name = f.name.value.trim();
-      const institution = f.institution.value.trim();
-      const email = f.email.value.trim();
-      const jurisdiction = f.jurisdiction.value.trim();
-      const track = f.track.value.trim();
-      const message = f.message.value.trim();
-      const trackLabel = f.track.options[f.track.selectedIndex]?.text || '';
-      const subject = encodeURIComponent(`KRYONIS Engagement — ${trackLabel || 'Inquiry'} — ${institution || name}`);
-      const lines = [
-        `Name: ${name}`,
-        `Institution: ${institution}`,
-        `Email: ${email}`,
-        `Jurisdiction: ${jurisdiction}`,
-        `Track: ${trackLabel}`,
-        ``,
-        `Inquiry:`,
-        message
-      ];
-      const body = encodeURIComponent(lines.join('\n'));
-      window.location.href = `mailto:hq@kryonis.global?subject=${subject}&body=${body}`;
-    });
 
     // Prefill track from URL ?track=...
     (function () {
