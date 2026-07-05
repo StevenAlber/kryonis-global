@@ -3,7 +3,7 @@
 /* Form endpoint — set this ONCE after deploying the Cloudflare Worker.
    Example: 'https://kryonis-forms.yourname.workers.dev'
    While empty, forms fall back to opening an email draft. */
-const KRYONIS_FORM_ENDPOINT = '';
+const KRYONIS_FORM_ENDPOINT = 'https://kryonis-forms.khorasystems.workers.dev';
 
 (() => {
   'use strict';
