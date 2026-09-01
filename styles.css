@@ -1536,3 +1536,26 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
 }
 .status-list li:last-child { border-bottom: 0; }
 .status-list li strong { color: var(--ivory); font-weight: 500; }
+
+
+/* ========== CORRESPONDENCE TRACK CONTEXT ========== */
+.track-context {
+  border-left: 2px solid var(--gold);
+  background: rgba(184, 147, 94, 0.06);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.track-context-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+.track-context-note {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ivory-soft);
+  margin: 0;
+}

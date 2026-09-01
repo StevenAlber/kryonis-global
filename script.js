@@ -160,6 +160,60 @@ const KRYONIS_FORM_ENDPOINT = 'https://kryonis-forms.khorasystems.workers.dev';
     });
   });
 
+  /* Correspondence track context from URL ?track=partnership */
+  (() => {
+    const TRACKS = {
+      counsel: {
+        label: 'Strategic Counsel',
+        note: 'You are opening correspondence on strategic counsel \u2014 bioeconomy doctrine, verification architecture, post-financial accounting, or sovereign systems design.',
+        placeholder: 'Briefly describe the question, the terrain, and the decision it sits behind.'
+      },
+      research: {
+        label: 'Research Briefs',
+        note: 'You are opening correspondence regarding a commissioned or standing research brief through KRYONIS Lab.',
+        placeholder: 'Briefly describe the subject of the brief, its intended readership, and any deadline.'
+      },
+      protocol: {
+        label: 'Protocol Pilots',
+        note: 'You are opening correspondence regarding a BCCS verification protocol pilot. No verification network is operating today; pilots establish the conditions under which a biological asset can be assigned a verifiable state.',
+        placeholder: 'Briefly describe the asset or jurisdiction, the state you need established, and who holds legal standing over it.'
+      },
+      partnership: {
+        label: 'Institutional Partnership',
+        note: 'You are opening correspondence regarding an institutional partnership, grant, accelerator, pilot, or strategic collaboration.',
+        placeholder: 'Briefly describe the institution, programme, proposed collaboration, or funding opportunity.'
+      },
+      capital: {
+        label: 'Capital Architecture',
+        note: 'You are opening correspondence on capital architecture. KRYONIS does not conduct public or retail capital solicitation; institutional grants, accelerators, strategic partnerships and bilateral engagements may be considered.',
+        placeholder: 'Briefly describe the institution, the instrument, and the terms under consideration.'
+      },
+      mandate: {
+        label: 'Sovereign Mandate',
+        note: 'You are opening correspondence regarding a sovereign or sovereign-adjacent mandate under a single contracting entity.',
+        placeholder: 'Briefly describe the institution, the jurisdiction, and the mandate under consideration.'
+      }
+    };
+
+    const key = (new URLSearchParams(location.search).get('track') || '').toLowerCase();
+    const cfg = TRACKS[key];
+    if (!cfg) return;
+
+    const box = document.getElementById('track-context');
+    const tag = document.getElementById('track-context-tag');
+    const note = document.getElementById('track-context-note');
+    const hidden = document.getElementById('corr-track');
+    const message = document.getElementById('corr-message');
+
+    if (box && tag && note) {
+      tag.textContent = cfg.label;
+      note.textContent = cfg.note;
+      box.hidden = false;
+    }
+    if (hidden) hidden.value = cfg.label;
+    if (message) message.setAttribute('placeholder', cfg.placeholder);
+  })();
+
   /* Prefill instrument from URL ?instrument=C-01 */
   (() => {
     const p = new URLSearchParams(location.search).get('instrument');
