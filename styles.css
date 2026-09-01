@@ -853,6 +853,11 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
 }
 .eco-link::after { content: "↗"; transition: transform 0.3s; }
 .eco-link:hover { gap: 14px; color: var(--gold-bright); }
+.eco-node.eco-wide {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+.eco-node.eco-wide .eco-desc { max-width: 860px; }
 @media (max-width: 800px) { .eco-grid { grid-template-columns: 1fr; } }
 
 /* ========== DEPLOYED PROTOCOL PROOF ========== */
@@ -1515,6 +1520,7 @@ section { padding: clamp(80px, 12vh, 160px) 0; }
 .status-tag.documented { border-color: var(--line-gold); color: var(--gold); }
 .status-tag.pending { border-color: var(--line-strong); color: var(--ivory-dim); }
 .status-tag.not-active { border-color: rgba(232, 227, 214, 0.18); color: var(--grey); }
+.status-tag.prototype { border-color: var(--line-gold); color: var(--ivory-soft); }
 .status-list { list-style: none; padding: 0; margin: 40px 0 0; max-width: var(--reading); }
 .status-list li {
   padding: 14px 0 14px 28px;
